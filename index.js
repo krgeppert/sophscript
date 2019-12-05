@@ -16,10 +16,13 @@ var basePairings = {
 
 var transformCsv = fs.readFileSync(transformFile, "utf8");
 var inputFiles = fs.readdirSync(inputDirectory, "utf8");
-var inputs = inputFiles.map(function (inputFile) {
+var inputs = inputFiles.filter(function (file) {
+    return file.slice(file.length - 4) === ".seq"
+}).map(function (inputFile) {
     return fs.readFileSync(path.resolve(inputDirectory, inputFile), "utf8");
 });
 
+console.log("found " + inputs.length + " .seq files in directory " + inputDirectory);
 
 var complementDnaString = function (dnaStr) {
     var result = "";
@@ -28,7 +31,7 @@ var complementDnaString = function (dnaStr) {
         result += basePairings[char] || char;
     }
     return result;
-}
+};
 
 var reverseString = function (str) {
     var result = "";
@@ -36,13 +39,15 @@ var reverseString = function (str) {
         result += str[str.length - i - 1];
     }
     return result;
-}
+};
 
 parseCsv(transformCsv, function (err, transforms) {
     if (err) {
         throw err
     }
+    console.log("" + transforms.length + " possible transformations found in " + transformFile);
     var result = "";
+    var matches = 0;
     inputs.forEach(function (input) {
         var lines = input.split("\n").filter(function (a) {
             return !!a.length
@@ -61,6 +66,7 @@ parseCsv(transformCsv, function (err, transforms) {
                 isMatch = isMatch && transformSpecifiers[i].toLowerCase() === inputNamePieces[i].toLowerCase();
             }
             if (isMatch) {
+                matches++;
                 var dnaStrand = lines.slice(1).reduce(function (agg, line) {
                     return agg + line.trim();
                 }, "");
@@ -78,7 +84,10 @@ parseCsv(transformCsv, function (err, transforms) {
             }
         });
     });
+    console.log("" + matches + " transform matches found.");
+
     fs.writeFileSync(outputFile, result);
+    console.log("output written to " + outputFile);
 
 });
 

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js ./example_inputs ./example_transform.csv ./test-output",
+    "test": "node index.js ./example_inputs ./example_transform.csv example_output",
     "build": "./node_modules/.bin/webpack --config ./webpack.js"
   },
   "dependencies": {
