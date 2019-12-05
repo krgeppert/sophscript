@@ -13,17 +13,12 @@ See [example transform](./example_transform.csv) and the [example inputs](./exam
 #### Usage
 install [nodejs](https://nodejs.org/en/)
 
-transform: 
-`node ./dist/main.js <input_directory> <transform.csv> <output.csv>`
-
-#### Development
-
-install
+install the dependencies
 `npm install`
 
-build: 
-`npm run build`
-
-test:
+test the installation
 `npm run test`
+
+usage:
+`node ./index.js <input_directory> <transform.csv> <output.csv>`
 
