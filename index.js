@@ -53,7 +53,7 @@ parseCsv(transformCsv, function (err, transforms) {
             return !!a.length
         });
         var inputName = lines[0];
-        var inputNamePieces = inputName.split("_").filter(function (a) {
+        var inputNamePieces = inputName.slice(1).split("_").filter(function (a) {
             return !!a.length
         });
         transforms.forEach(function (transform) {
@@ -73,7 +73,7 @@ parseCsv(transformCsv, function (err, transforms) {
                     parseInt(transform[transform.length - 2], 10) - 1,
                     parseInt(transform[transform.length - 1], 10) - 1
                 ];
-                var resultName = transformSpecifiers.join("_");
+                var resultName = ">" + transformSpecifiers.join("_");
                 var dnaSlice = dnaStrand.slice(range[0], range[1]).trim();
 
                 result = result + resultName + "_F\n" + dnaSlice.toUpperCase() + "\n";
