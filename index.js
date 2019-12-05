@@ -83,10 +83,9 @@ parseCsv(transformCsv, function (err, transforms) {
             }
         });
     });
-    console.log("" + matches + " transform matches found.");
+    console.log("" + matches + " transform matches found");
 
     fs.writeFileSync(outputFile, result);
     console.log("output written to " + outputFile);
 
 });
-
