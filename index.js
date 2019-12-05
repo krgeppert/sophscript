@@ -61,7 +61,6 @@ parseCsv(transformCsv, function (err, transforms) {
             var transformSpecifiers = transform.slice(0, transform.length - 2).map(function (a) {
                 return a.trim()
             });
-            ;
             for (var i = 0; i < transformSpecifiers.length; i++) {
                 isMatch = isMatch && transformSpecifiers[i].toLowerCase() === inputNamePieces[i].toLowerCase();
             }
