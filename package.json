@@ -1,0 +1,19 @@
+{
+  "name": "sophscript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js ./example_inputs ./example_transform.csv ./test-output",
+    "build": "./node_modules/.bin/webpack --config ./webpack.js"
+  },
+  "dependencies": {
+    "webpack": "4.41.2",
+    "webpack-cli": "3.3.10",
+    "csv-parse": "4.8.2",
+    "csv-stringify": "5.3.4"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
