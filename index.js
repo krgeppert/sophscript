@@ -76,16 +76,16 @@ parseCsv(transformCsv, function (err, transforms) {
                 var resultName = ">" + transformSpecifiers.join("_");
                 var dnaSlice = dnaStrand.slice(range[0], range[1]).trim();
 
-                result = result + resultName + "_F\n" + dnaSlice.toUpperCase() + "\n";
-                result = result + resultName + "_RV\n" + reverseString(dnaSlice).toUpperCase() + "\n";
-                result = result + resultName + "_C\n" + complementDnaString(dnaSlice).toUpperCase() + "\n";
-                result = result + resultName + "_RC\n" + reverseString(complementDnaString(dnaSlice)).toUpperCase() + "\n";
+                result1 = result + resultName + "_F\n" + dnaSlice.toUpperCase() + "\n";
+                result2 = result + resultName + "_RV\n" + reverseString(dnaSlice).toUpperCase() + "\n";
+                result2 = result + resultName + "_C\n" + complementDnaString(dnaSlice).toUpperCase() + "\n";
+                result1 = result + resultName + "_RC\n" + reverseString(complementDnaString(dnaSlice)).toUpperCase() + "\n";
             }
         });
     });
     console.log("" + matches + " transform matches found");
 
-    fs.writeFileSync(outputFile, result);
+    fs.writeFileSync(outputFile, result1);
     console.log("output written to " + outputFile);
 
 });
